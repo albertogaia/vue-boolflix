@@ -3,7 +3,9 @@
     <Header 
       @userSearch="getInputText"
     />
-    <Container />
+    <Container 
+       :inputText="inputText"
+    />
   </div>
 </template>
 
@@ -26,7 +28,7 @@ export default {
   methods: {
     getInputText(text){
       this.inputText = text;
-      console.log(this.inputText);
+      // console.log(this.inputText);
     }
   },
 }

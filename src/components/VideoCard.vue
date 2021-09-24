@@ -1,13 +1,9 @@
 <template>
   <div>
-        <ul>
-            <li v-for="(item, index) in arrayList" :key="index" class="list-items">
-                <div class="item-info">Titolo<h3 class="item-title">{{item.title}}</h3></div>
-                <div class="item-info">Titolo originale<h3 class="item-originalTitle">{{item.original_title}}</h3></div>
-                <div class="item-info">Lingua<h3 class="item-language">{{item.original_language}}</h3></div>
-                <div class="item-info">Voto<h3 class="item-vote">{{item.vote_average}}</h3></div>
-            </li>
-        </ul>
+        <div class="item-info">Titolo<h3 class="item-title">{{item.title}}</h3></div>
+        <div class="item-info">Titolo originale<h3 class="item-originalTitle">{{item.original_title}}</h3></div>
+        <div class="item-info">Lingua<h3 class="item-language">{{item.original_language}}</h3></div>
+        <div class="item-info">Voto<h3 class="item-vote">{{item.vote_average}}</h3></div>
   </div>
 </template>
 
@@ -15,7 +11,7 @@
 export default {
     name: 'VideoCard',
 
-    props: ['arrayList'],
+    props: ['item'],
     data() {
         return {
         }
@@ -30,19 +26,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-ul{
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    .list-items{
-        width: calc(100% / 5 - 30px);
-        margin: 15px;
-        text-align: center;
-
-        .item-info{
-            margin: 10px auto;
-        }
-    }
+.item-info{
+    margin: 10px auto;
 }
 </style>
