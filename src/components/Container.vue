@@ -1,35 +1,39 @@
 <template>
   <div>
       <div class="container" >
-          <div class="welcome" v-if="(listUser.length < 1)">
+            <div class="welcome" v-if="(listUser.length < 1)">
                 <h1 class="welcome-title">Boolflix</h1>
                 <input v-on:keyup.enter="sendResult" type="text" v-model="inputText" placeholder="Cerca un titolo" autofocus autocomplete="">
-
+                <country-flag country='it'/>
             </div>
-          <ul v-else>
-              <li v-for="(item, index) in listUser" :key="index" class="list-items">
-                  <VideoCard
-                    :item="item"/>
-              </li>
-            
-          </ul>
+
+            <div v-else>
+                <ul>
+                <li v-for="(item, index) in listUser" :key="index" class="list-items">
+                        <VideoCard
+                            :item="item"
+                            :arrayList="arrayList"
+                        />
+                </li>
+                </ul>
+            </div>
       </div>
   </div>
 </template>
 
 <script>
 import VideoCard from './VideoCard.vue'
+import CountryFlag from 'vue-country-flag'
 export default {
     name: 'Container',
-    props: ['listUser'],
+    props: ['listUser', 'arrayList'],
 
     components: {
-        VideoCard
+        VideoCard,
+        CountryFlag
     },
     data() {
         return {
-            arrayList: [],
-            filteredList:[],
             inputText: ''
         }
     },
@@ -69,9 +73,11 @@ export default {
         border: none;
         line-height: 50px;
         font-size: 30px;
+
     }
     input::placeholder{
         text-align: center;
+        opacity: 0.2;
     }
 
 

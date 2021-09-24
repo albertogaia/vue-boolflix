@@ -4,8 +4,9 @@
       @userSearch="getInputText"
     />
     <Container 
-      :listUser="listUser"
+      :listUser="listUser" 
       @userSearch="getInputText"
+      :arrayList="arrayList"
 
     />
   </div>
@@ -36,7 +37,7 @@ export default {
   methods: {
     getInputText(text){
       this.inputText = text;
-      this.getArrayUser()
+      this.getArrayUser();
     },
 
     getArrayUser(){
@@ -47,16 +48,19 @@ export default {
         .get(this.apiURL+this.inputText)
         .then(res =>{
             this.listUser = res.data.results
-            console.log(this.listUser)
+            // console.log(this.listUser)
+            this.getLanguage();
         })
         
-        this.getLanguage()
     },
 
     getLanguage(){
-      for(let i = 0; i<this.listUser.length; i++){
-        console.log(this.listUser[i].original_language)
+      for(let i = 0; i < this.listUser.length; i++){
+        if(!this.languages.includes(this.listUser[i].original_language)){
+          this.languages.push(this.listUser[i].original_language)
+        }
       }
+      // console.log(this.languages)
     }
   },
 

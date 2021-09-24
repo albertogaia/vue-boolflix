@@ -11,7 +11,7 @@
 export default {
     name: 'VideoCard',
 
-    props: ['item'],
+    props: ['item', 'arrayList'],
     data() {
         return {
         }
