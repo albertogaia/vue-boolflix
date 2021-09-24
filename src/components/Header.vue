@@ -1,13 +1,13 @@
 <template>
   <div class="header">
       <div class="container">
-        <div class="logo-text">
-            <h2>BoolFlix</h2>
-        </div>
-        <div class="search-container">
-            <input type="text" v-model="inputText" placeholder="Cerca un titolo">
-            <button @click.prevent="$emit('userSearch', inputText)">Cerca</button>
-        </div>
+            <div class="logo-text">
+                <a href="/"><h2>BoolFlix</h2></a>
+            </div>
+            <div class="search-container">
+                <input type="text" v-model="inputText" placeholder="Cerca un titolo">
+                <button @click.prevent="sendResult">Cerca</button>
+            </div>
       </div>
   </div>
 </template>
@@ -22,6 +22,10 @@ export default {
         }
     },
     methods: {
+        sendResult(){
+            this.$emit('userSearch', this.inputText);
+            this.inputText = '';
+        }
     },
 }
 </script>
@@ -38,6 +42,34 @@ export default {
         display: flex;
         align-items: center;
         justify-content: space-between;
+
+        .logo-text{
+            padding-left: 15px;
+        }
+        .search-container{
+            padding-right: 15px;
+        }
+        a{
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .search-container{
+            input, button{
+                height: 35px;
+                padding: 0 15px;
+            }
+
+            button{
+                background: $primary;
+                border: none;
+                cursor: pointer;
+            }
+
+            input:focus{
+                outline: none;
+            }
+        }
     }
 
     .logo-text{

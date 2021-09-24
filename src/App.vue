@@ -5,6 +5,8 @@
     />
     <Container 
       :listUser="listUser"
+      @userSearch="getInputText"
+
     />
   </div>
 </template>
@@ -27,6 +29,7 @@ export default {
       inputText: '',
       listUser: [],
       arrayList: [],
+      languages: [],
       apiURL: 'https://api.themoviedb.org/3/search/movie?api_key=ce4bf3c43722932619dd2d67366a9e66&query='
     }
   },
@@ -37,8 +40,8 @@ export default {
     },
 
     getArrayUser(){
-      if(this.inputText === ''){
-        this.listUser = this.arrayList
+      if(this.inputText == ''){
+        this.listUser = []
       }
       axios
         .get(this.apiURL+this.inputText)
@@ -46,22 +49,18 @@ export default {
             this.listUser = res.data.results
             console.log(this.listUser)
         })
+        
+        this.getLanguage()
     },
 
-    getList(){
-        axios
-            .get(this.apiURL + 'rick')
-            .then(res =>{
-                this.arrayList = res.data.results //array di oggetti (ogni oggetto un film)
-                this.listUser = this.arrayList
-            })
-    },
-
-
+    getLanguage(){
+      for(let i = 0; i<this.listUser.length; i++){
+        console.log(this.listUser[i].original_language)
+      }
+    }
   },
 
   created() {
-    this.getList()
   },
 }
 </script>

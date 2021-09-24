@@ -1,7 +1,12 @@
 <template>
   <div>
       <div class="container" >
-          <ul>
+          <div class="welcome" v-if="(listUser.length < 1)">
+                <h1 class="welcome-title">Boolflix</h1>
+                <input v-on:keyup.enter="sendResult" type="text" v-model="inputText" placeholder="Cerca un titolo" autofocus autocomplete="">
+
+            </div>
+          <ul v-else>
               <li v-for="(item, index) in listUser" :key="index" class="list-items">
                   <VideoCard
                     :item="item"/>
@@ -25,10 +30,15 @@ export default {
         return {
             arrayList: [],
             filteredList:[],
+            inputText: ''
         }
     },
 
     methods:{
+        sendResult(){
+            this.$emit('userSearch', this.inputText);
+            this.inputText = '';
+        }
     },
     computed: {
     },
@@ -36,6 +46,37 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/styles/general.scss';
+
+.welcome{
+    width: 100%;
+    height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .welcome-title{
+        margin-top: -100px;
+        font-size: 5rem;
+        color: $primary;
+    }
+
+    input{
+        height: 50px;
+        width: 300px;
+        outline: none;
+        border: none;
+        line-height: 50px;
+        font-size: 30px;
+    }
+    input::placeholder{
+        text-align: center;
+    }
+
+
+}
+
 ul{
     list-style: none;
     display: flex;
