@@ -5,7 +5,8 @@
             <h2>BoolFlix</h2>
         </div>
         <div class="search-container">
-            <input type="text">
+            <input type="text" v-model="inputText" placeholder="Cerca un titolo">
+            <button type="sumbit" @click.prevent="$emit('userSearch', inputText)">Cerca</button>
         </div>
       </div>
   </div>
@@ -14,6 +15,14 @@
 <script>
 export default {
     name: 'Header',
+
+    data() {
+        return {
+            inputText: '',
+        }
+    },
+    methods: {
+    },
 }
 </script>
 

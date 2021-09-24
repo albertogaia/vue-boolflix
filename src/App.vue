@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <Header />
+    <Header 
+      @userSearch="getInputText"
+    />
     <Container />
   </div>
 </template>
@@ -14,7 +16,19 @@ export default {
   components: {
     Header,
     Container,
-  }
+  },
+
+  data() {
+    return {
+      inputText: '',
+    }
+  },
+  methods: {
+    getInputText(text){
+      this.inputText = text;
+      console.log(this.inputText);
+    }
+  },
 }
 </script>
 
