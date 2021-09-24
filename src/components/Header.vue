@@ -6,7 +6,7 @@
         </div>
         <div class="search-container">
             <input type="text" v-model="inputText" placeholder="Cerca un titolo">
-            <button type="sumbit" @click="$emit('userSearch', inputText)">Cerca</button>
+            <button @click.prevent="$emit('userSearch', inputText)">Cerca</button>
         </div>
       </div>
   </div>

@@ -34,14 +34,16 @@ export default {
             axios
                 .get(`https://api.themoviedb.org/3/search/movie?api_key=ce4bf3c43722932619dd2d67366a9e66&query=rick`)
                 .then(res =>{
+                    console.log(res.data.results)
                     this.arrayList = res.data.results //array di oggetti (ogni oggetto un film)
                 })
         },
         getListUser(){
             axios
-                .get('https://api.themoviedb.org/3/search/movie?api_key=ce4bf3c43722932619dd2d67366a9e66&query=$'+ this.inputText)
+                .get('https://api.themoviedb.org/3/search/movie?api_key=ce4bf3c43722932619dd2d67366a9e66&query='+ this.inputText)
                 .then(res =>{
                     console.log(res.data.results)
+                    // this.arrayList = res.data.results
                     return res.data.results
                 })
         },
@@ -52,7 +54,7 @@ export default {
                 return this.arrayList
             }else{
                 let filteredArray = this.getListUser();
-                
+
                 return filteredArray;
             }
             
