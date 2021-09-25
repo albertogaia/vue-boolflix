@@ -1,0 +1,10 @@
+.single-card{
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .item-info{
+    margin: 10px auto;
+    }
+}

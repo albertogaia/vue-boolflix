@@ -5,8 +5,8 @@
     />
     <Container 
       :listUser="listUser" 
+      :listUserTv="listUserTv"
       @userSearch="getInputText"
-      :arrayList="arrayList"
 
     />
   </div>
@@ -27,42 +27,50 @@ export default {
 
   data() {
     return {
-      inputText: '',
       listUser: [],
-      arrayList: [],
-      languages: [],
-      apiURL: 'https://api.themoviedb.org/3/search/movie?api_key=ce4bf3c43722932619dd2d67366a9e66&query='
+      listUserTv: [],
+      apiURL: 'https://api.themoviedb.org/3/search/',
+      apiTypeMovie: 'movie',
+      apiTypeTv: 'tv',
+      apiString: '?api_key=',
+      apiKey: 'ce4bf3c43722932619dd2d67366a9e66&query=',
+      query: '',
     }
   },
   methods: {
     getInputText(text){
-      this.inputText = text;
+      this.query = text;
       this.getArrayUser();
+      this.getArrayTvUser()
     },
 
+
     getArrayUser(){
-      if(this.inputText == ''){
+      if(this.query == ''){
         this.listUser = []
       }
       axios
-        .get(this.apiURL+this.inputText)
+        .get(this.apiURL + this.apiTypeMovie + this.apiString + this.apiKey + this.query)
         .then(res =>{
             this.listUser = res.data.results
-            // console.log(this.listUser)
-            this.getLanguage();
         })
         
     },
 
-    getLanguage(){
-      for(let i = 0; i < this.listUser.length; i++){
-        if(!this.languages.includes(this.listUser[i].original_language)){
-          this.languages.push(this.listUser[i].original_language)
-        }
+    getArrayTvUser(){
+      if(this.query == ''){
+        this.listUserTv = []
       }
-      // console.log(this.languages)
-    }
+      axios
+        .get(this.apiURL + this.apiTypeTv + this.apiString + this.apiKey + this.query)
+        .then(res =>{
+            this.listUserTv = res.data.results
+        })
+        
+    },
   },
+
+
 
   created() {
   },

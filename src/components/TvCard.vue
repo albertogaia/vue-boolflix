@@ -2,11 +2,11 @@
   <div class="single-card">
         <div class="item-info">
             Titolo
-            <h3 class="item-title">{{item.title}}</h3> 
+            <h3 class="item-title">{{item.name}}</h3> 
         </div>
         <div class="item-info">
             Titolo originale
-            <h3 class="item-originalTitle">{{item.original_title}}</h3>
+            <h3 class="item-originalTitle">{{item.original_name}}</h3>
         </div>
         <div class="item-info">
             Lingua
@@ -27,7 +27,7 @@ export default {
     components: {
         CountryFlag,
     },
-    name: 'VideoCard',
+    name: 'TvCard',
 
     props: ['item',],
     data() {

@@ -1,20 +1,28 @@
 <template>
   <div>
-      <div class="container" >
+      <div class="" >
             <div class="welcome" v-if="(listUser.length < 1)">
                 <h1 class="welcome-title">Boolflix</h1>
                 <input v-on:keyup.enter="sendResult" type="text" v-model="inputText" placeholder="Cerca un titolo" autofocus autocomplete="">
                 <country-flag country='it'/>
             </div>
 
-            <div v-else>
+            <div v-else class="movies-list">
+                <h2 class="results-list-title">Movies</h2>
                 <ul>
-                <li v-for="(item, index) in listUser" :key="index" class="list-items">
-                        <VideoCard
-                            :item="item"
-                            :arrayList="arrayList"
-                        />
-                </li>
+                    <li v-for="(item, index) in listUser" :key="index" class="list-items">
+                            <VideoCard
+                                :item="item"
+                            />
+                    </li>
+                </ul>
+                <h2 class="results-list-title">TV Series</h2>
+                <ul>
+                    <li v-for="(item, index) in listUserTv" :key="index" class="list-items">
+                            <TvCard
+                                :item="item"
+                            />
+                    </li>
                 </ul>
             </div>
       </div>
@@ -23,14 +31,18 @@
 
 <script>
 import VideoCard from './VideoCard.vue'
+import TvCard from './TvCard.vue'
 import CountryFlag from 'vue-country-flag'
+
 export default {
     name: 'Container',
-    props: ['listUser', 'arrayList'],
+    props: ['listUser', 'listUserTv'],
 
     components: {
         VideoCard,
-        CountryFlag
+        TvCard,
+        CountryFlag,
+
     },
     data() {
         return {
@@ -82,17 +94,35 @@ export default {
 
 
 }
+.movies-list{
+    overflow: auto;
 
+}
+.results-list-title{
+    padding: 20px 0px;
+    text-align: center;
+    font-size: 34px;
+}
 ul{
     list-style: none;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
+    flex-basis: 300px;
+
+    overflow: auto;
+
     .list-items{
-        width: calc(100% / 5 - 30px);
+        // max-width: calc(100vw / 5 - 30px);
+        min-width: 300px;
+        // min-width: 300px;
+        // width: 100%;
         margin: 15px;
         text-align: center;
-
+        background-color: $bg-dark;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        color: white;
 
     }
 }
