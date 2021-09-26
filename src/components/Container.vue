@@ -16,7 +16,7 @@
                             />
                     </li>
                 </ul>
-                <h2 class="results-list-title">TV Series</h2>
+                <h2 class="results-list-title" v-if="(listUserTv.length>0)">TV Series</h2>
                 <ul>
                     <li v-for="(item, index) in listUserTv" :key="index" class="list-items">
                             <VideoCard
@@ -69,6 +69,8 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    transition: 0.8s;
+
 
     .welcome-title{
         margin-top: -100px;
@@ -93,10 +95,14 @@ export default {
 
 }
 .movies-list{
+    background-color: rgb(36, 36, 36);
+    transition: 0.8s;
     overflow: auto;
+    min-height: calc(100vh - 100px) ;
 
 }
 .results-list-title{
+    color: white;
     padding: 20px 0px;
     text-align: center;
     font-size: 34px;
@@ -106,7 +112,6 @@ ul{
     display: flex;
     justify-content: flex-start;
     flex-basis: 300px;
-
     overflow: auto;
 
     .list-items{
@@ -114,7 +119,6 @@ ul{
         justify-content: center;
         min-width: 300px;
         margin: 15px;
-        text-align: center;
         background-color: $bg-dark;
         border-radius: 10px;
         color: white;

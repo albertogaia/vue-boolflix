@@ -1,7 +1,7 @@
 <template>
     <div v-if="(item.title != null)" class="single-card">
         <div class="card-info">
-            <img v-if="(item.poster_path != null)" :src="`https://image.tmdb.org/t/p/w342/${item.poster_path}`" alt="">
+            <img v-if="(item.poster_path != null)" :src="`https://image.tmdb.org/t/p/w342/${item.poster_path}`" :alt="item.title">
             <img v-else src="https://i.imgur.com/3AO9BLH.jpg" alt="not found">
         </div>
         <div class="info-text">
@@ -14,8 +14,16 @@
                 <h3 class="item-originalTitle">{{item.original_title}}</h3>
             </div>
             <div class="item-info">
-                Lingua
-                <h3 class="item-language"><country-flag :country='myLang(item.original_language)'/></h3>
+                Overview:
+                <p class="item-overviw">{{item.overview}}</p>
+            </div>
+            <div class="item-info language">
+                Lingua:
+                <country-flag :country='myLang(item.original_language)'/>
+            </div>
+            <div class="item-info">
+                Cast:
+                <p class="item-cast"></p>
             </div>
             <div class="item-info">
                 Voto
@@ -38,8 +46,12 @@
                 <h3 class="item-originalTitle">{{item.original_name}}</h3>
             </div>
             <div class="item-info">
-                Lingua
-                <h3 class="item-language"><country-flag :country='myLang(item.original_language)'/></h3>
+                Overview:
+                <p class="item-overviw">{{item.overview}}</p>
+            </div>
+            <div class="item-info language">
+                Lingua:
+                <country-flag :country='myLang(item.original_language)'/>
             </div>
             <div class="item-info">
                 Voto
@@ -76,7 +88,6 @@ export default {
         getStarsActive(vote,n){
             vote = parseInt(vote);
             vote = Math.ceil(vote / 2);
-            console.log(vote)
             if(n <= vote) return "yellow";
             return "standard"
             

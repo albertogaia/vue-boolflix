@@ -1,14 +1,17 @@
 <template>
   <div id="app">
-    <Header 
-      @userSearch="getInputText"
-    />
-    <Container 
-      :listUser="listUser" 
-      :listUserTv="listUserTv"
-      @userSearch="getInputText"
+    <Loader v-if="(loading)"/>
+    <div v-else>
+      <Header 
+        @userSearch="getInputText"
+      />
+      <Container 
+        :listUser="listUser" 
+        :listUserTv="listUserTv"
+        @userSearch="getInputText"
 
-    />
+      />
+    </div>
   </div>
 </template>
 
@@ -16,11 +19,13 @@
 import axios from 'axios'
 
 import Header from './components/Header.vue';
-import Container from './components/Container.vue'; 
+import Container from './components/Container.vue';
+import Loader from './components/Loader.vue'
 
 export default {
   name: 'App',
   components: {
+    Loader,
     Header,
     Container,
   },
@@ -35,6 +40,7 @@ export default {
       apiString: '?api_key=',
       apiKey: 'ce4bf3c43722932619dd2d67366a9e66&query=',
       query: '',
+      loading: true,
     }
   },
   methods: {
@@ -45,16 +51,6 @@ export default {
       this.getArrayTvUser() 
       
     },
-
-    // getAxios(type, array){
-    //   axios
-    //     .get(this.apiURL + type + this.apiString + this.apiKey + this.query)
-    //     .then((res , array) =>{
-    //       array = res.data.results
-    //       return array
-    //     })
-    //     return array
-    // },
 
     getArrayUser(){
       if(this.query == ''){
@@ -78,12 +74,14 @@ export default {
         })
 
     },
+
   },
 
-
-
-  created() {
-  },
+  mounted() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 3000);
+  }
 }
 </script>
 
