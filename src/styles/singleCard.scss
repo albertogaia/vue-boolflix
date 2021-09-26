@@ -38,7 +38,18 @@
             padding: 10px;
             margin: auto;
         }
+
+        .standard{
+            color: rgba(255, 255, 255, 0.399);
+        }
+
+        .yellow {
+            color: red;
+        }
     }
+
+
+
     &:hover{
         transform: scale(1.05);
         transition: 0.5s;

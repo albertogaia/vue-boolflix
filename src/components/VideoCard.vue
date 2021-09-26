@@ -1,5 +1,5 @@
 <template>
-    <div class="single-card">
+    <div v-if="(item.title != null)" class="single-card">
         <div class="card-info">
             <img v-if="(item.poster_path != null)" :src="`https://image.tmdb.org/t/p/w342/${item.poster_path}`" alt="">
             <img v-else src="https://i.imgur.com/3AO9BLH.jpg" alt="not found">
@@ -19,8 +19,31 @@
             </div>
             <div class="item-info">
                 Voto
-                <h3 class="item-vote" v-if="(parseInt(item.vote_average) > 1)">{{item.vote_average}}</h3>
-                <h3 class="item-vote" v-else>//</h3>
+                <fa icon="star" v-for="(i, index) in 5" :class="getStarsActive(item.vote_average,i)" :key="index"/>
+            </div>
+        </div>
+    </div>
+    <div v-else class="single-card">
+        <div class="card-info">
+            <img v-if="(item.poster_path != null)" :src="`https://image.tmdb.org/t/p/w342/${item.poster_path}`" :alt="item.name">
+            <img v-else src="https://i.imgur.com/3AO9BLH.jpg" alt="not found">
+        </div>
+        <div class="info-text">   
+            <div class="item-info">
+                Titolo
+                <h3 class="item-title">{{item.name}}</h3> 
+            </div>
+            <div class="item-info">
+                Titolo originale
+                <h3 class="item-originalTitle">{{item.original_name}}</h3>
+            </div>
+            <div class="item-info">
+                Lingua
+                <h3 class="item-language"><country-flag :country='myLang(item.original_language)'/></h3>
+            </div>
+            <div class="item-info">
+                Voto
+                <fa icon="star" v-for="(i, index) in 5" :class="getStarsActive(item.vote_average,i)" :key="index"/>
             </div>
         </div>
     </div>
@@ -35,6 +58,8 @@ export default {
         CountryFlag,
     },
     name: 'VideoCard',
+    maxStars: 5,
+    newVote: '',
 
     props: ['item',],
     data() {
@@ -47,7 +72,18 @@ export default {
             else if (lang == 'ja') return 'jp'
             return lang
         },
-    },
+
+        getStarsActive(vote,n){
+            vote = parseInt(vote);
+            vote = Math.ceil(vote / 2);
+            console.log(vote)
+            if(n <= vote) return "yellow";
+            return "standard"
+            
+        },
+
+    }
+
 
 
 }
