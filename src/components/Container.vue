@@ -19,7 +19,7 @@
                 <h2 class="results-list-title">TV Series</h2>
                 <ul>
                     <li v-for="(item, index) in listUserTv" :key="index" class="list-items">
-                            <TvCard
+                            <VideoCard
                                 :item="item"
                             />
                     </li>
@@ -31,7 +31,6 @@
 
 <script>
 import VideoCard from './VideoCard.vue'
-import TvCard from './TvCard.vue'
 import CountryFlag from 'vue-country-flag'
 
 export default {
@@ -40,7 +39,6 @@ export default {
 
     components: {
         VideoCard,
-        TvCard,
         CountryFlag,
 
     },
