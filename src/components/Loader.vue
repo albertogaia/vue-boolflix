@@ -10,21 +10,21 @@ export default {
 
     methods: {
         playSound () {
-            var audio = new Audio(require('@/assets/sound/sound_effect.mp3'));
+            var audio = new Audio(require(`../assets/sound/sound_effect.mp3`));
             console.log(audio)
             audio.play();
         }   
     },
 
-    created() {
+    mounted() {
         console.log(this.playSound)
-        this.playSound
+        this.playSound()
     },
 }
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/singleCard.scss';
+@import '@/styles/vars.scss';
    
   #loader{
     background-color: #333;
@@ -39,15 +39,22 @@ export default {
 
     p{
         font-size: 12vw;
-        animation: enter 3s linear;
+        animation: enter 4s linear;
 
     }
 
     @keyframes enter {
-      from{
+      0%{
+        background-color: transparent;
       }
-      to{
-        font-size: 10vw;
+      80%{
+        font-size: 8vw;
+        background-color: transparent;
+
+      }
+      100%{
+        font-size: 300vw;
+        background-color: $primary;
       }
     }
   }
