@@ -38,12 +38,23 @@ export default {
     }
   },
   methods: {
+
     getInputText(text){
       this.query = text;
       this.getArrayUser();
-      this.getArrayTvUser()
+      this.getArrayTvUser() 
+      
     },
 
+    // getAxios(type, array){
+    //   axios
+    //     .get(this.apiURL + type + this.apiString + this.apiKey + this.query)
+    //     .then((res , array) =>{
+    //       array = res.data.results
+    //       return array
+    //     })
+    //     return array
+    // },
 
     getArrayUser(){
       if(this.query == ''){
@@ -52,9 +63,8 @@ export default {
       axios
         .get(this.apiURL + this.apiTypeMovie + this.apiString + this.apiKey + this.query)
         .then(res =>{
-            this.listUser = res.data.results
+          this.listUser = res.data.results
         })
-        
     },
 
     getArrayTvUser(){
@@ -64,9 +74,9 @@ export default {
       axios
         .get(this.apiURL + this.apiTypeTv + this.apiString + this.apiKey + this.query)
         .then(res =>{
-            this.listUserTv = res.data.results
+          this.listUserTv = res.data.results
         })
-        
+
     },
   },
 

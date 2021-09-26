@@ -5,7 +5,7 @@
                 <a href="/"><h2>BoolFlix</h2></a>
             </div>
             <div class="search-container">
-                <input type="text" v-model="inputText" placeholder="Cerca un titolo">
+                <input v-on:keyup.enter="sendResult" type="text" v-model="inputText" placeholder="Cerca un titolo">
                 <button @click.prevent="sendResult">Cerca</button>
             </div>
       </div>
@@ -74,6 +74,7 @@ export default {
 
     .logo-text{
         h2{
+            font-size: 2em;
             font-weight: 900;
             color: $primary;
         }

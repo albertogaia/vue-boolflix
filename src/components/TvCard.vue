@@ -1,21 +1,27 @@
 <template>
   <div class="single-card">
-        <div class="item-info">
-            Titolo
-            <h3 class="item-title">{{item.name}}</h3> 
+        <div class="card-info">
+            <img v-if="(item.poster_path != null)" :src="`https://image.tmdb.org/t/p/w342/${item.poster_path}`" :alt="item.name">
+            <img v-else src="https://i.imgur.com/3AO9BLH.jpg" alt="not found">
         </div>
-        <div class="item-info">
-            Titolo originale
-            <h3 class="item-originalTitle">{{item.original_name}}</h3>
-        </div>
-        <div class="item-info">
-            Lingua
-            <h3 class="item-language"><country-flag :country='myLang(item.original_language)'/></h3>
-        </div>
-        <div class="item-info">
-            Voto
-            <h3 class="item-vote" v-if="(parseInt(item.vote_average) > 1)">{{item.vote_average}}</h3>
-            <h3 class="item-vote" v-else>//</h3>
+        <div class="info-text">   
+            <div class="item-info">
+                Titolo
+                <h3 class="item-title">{{item.name}}</h3> 
+            </div>
+            <div class="item-info">
+                Titolo originale
+                <h3 class="item-originalTitle">{{item.original_name}}</h3>
+            </div>
+            <div class="item-info">
+                Lingua
+                <h3 class="item-language"><country-flag :country='myLang(item.original_language)'/></h3>
+            </div>
+            <div class="item-info">
+                Voto
+                <h3 class="item-vote" v-if="(parseInt(item.vote_average) > 1)">{{item.vote_average}}</h3>
+                <h3 class="item-vote" v-else>//</h3>
+            </div>
         </div>
   </div>
 </template>

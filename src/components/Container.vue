@@ -112,17 +112,15 @@ ul{
     overflow: auto;
 
     .list-items{
-        // max-width: calc(100vw / 5 - 30px);
+        display: flex;
+        justify-content: center;
         min-width: 300px;
-        // min-width: 300px;
-        // width: 100%;
         margin: 15px;
         text-align: center;
         background-color: $bg-dark;
         border-radius: 10px;
-        display: flex;
-        justify-content: center;
         color: white;
+        overflow: hidden;
 
     }
 }
