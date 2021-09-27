@@ -10,12 +10,12 @@
                 <h3 class="item-title">{{item.title}}</h3> 
             </div>
             <div class="item-info">
-                Titolo originale
-                <h3 class="item-originalTitle">{{item.original_title}}</h3>
-            </div>
-            <div class="item-info">
                 Overview:
                 <p class="item-overviw">{{item.overview}}</p>
+            </div>
+            <div class="item-info">
+                Anno di uscita:
+                <p class="item-year">{{item.release_date}}</p>
             </div>
             <div class="item-info language">
                 Lingua:
@@ -42,12 +42,12 @@
                 <h3 class="item-title">{{item.name}}</h3> 
             </div>
             <div class="item-info">
-                Titolo originale
-                <h3 class="item-originalTitle">{{item.original_name}}</h3>
+                Overview:
+                <p class="item-overview">{{item.overview}}</p>
             </div>
             <div class="item-info">
-                Overview:
-                <p class="item-overviw">{{item.overview}}</p>
+                Prima messa in onda:
+                <p class="item-year">{{item.first_air_date}}</p>
             </div>
             <div class="item-info language">
                 Lingua:
@@ -56,6 +56,8 @@
             <div class="item-info">
                 Voto
                 <fa icon="star" v-for="(i, index) in 5" :class="getStarsActive(item.vote_average,i)" :key="index"/>
+                <br>
+                <far icon="star" v-for="(i, index) in 5" :class="getStarsActive(item.vote_average,i)" :key="index"/>
             </div>
         </div>
     </div>
@@ -71,7 +73,6 @@ export default {
     },
     name: 'VideoCard',
     maxStars: 5,
-    newVote: '',
 
     props: ['item',],
     data() {
@@ -88,7 +89,7 @@ export default {
         getStarsActive(vote,n){
             vote = parseInt(vote);
             vote = Math.ceil(vote / 2);
-            if(n <= vote) return "yellow";
+            if(n <= vote) return "red";
             return "standard"
             
         },

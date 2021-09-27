@@ -103,8 +103,8 @@ export default {
 }
 .results-list-title{
     color: white;
-    padding: 20px 0px;
-    text-align: center;
+    padding: 20px 20px;
+    text-align: left;
     font-size: 34px;
 }
 ul{
