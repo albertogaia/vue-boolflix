@@ -29,7 +29,7 @@
       </div>
       <div class="item-info">
         Cast:
-        <p class="item-cast"></p>
+        <Cast :id="item.id" />
       </div>
       <div class="item-info">
         Voto
@@ -46,10 +46,12 @@
 
 <script>
 import CountryFlag from "vue-country-flag";
+import Cast from "./Cast.vue";
 
 export default {
   components: {
     CountryFlag,
+    Cast,
   },
   name: "VideoCard",
   maxStars: 5,
